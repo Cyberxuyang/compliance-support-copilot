@@ -1,0 +1,11 @@
+[project]
+name = "compliance-support-copilot"
+version = "0.1.0"
+description = "An AI copilot for support and compliance teams with citation-grounded RAG, evals, and agentic workflows."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.136.1",
+    "ruff>=0.15.12",
+    "uvicorn>=0.46.0",
+]
