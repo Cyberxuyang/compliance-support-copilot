@@ -13,4 +13,5 @@ def test_health_check() -> None:
     assert response.json() == {
         "status": "ok",
         "service": "compliance-support-copilot",
+        "env": "development",
     }
