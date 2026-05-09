@@ -1,14 +1,7 @@
 from fastapi import FastAPI
 
-from backend.app.core.config import settings
+from backend.app.api.routes.health_check import router as health_router
 
 app = FastAPI(title="Compliance Support Copilot")
 
-
-@app.get("/health")
-def health_check():
-    return {
-        "status": "ok",
-        "service": "compliance-support-copilot",
-        "env": settings.app_env,
-    }
+app.include_router(health_router)
