@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from backend.app.llm.ollama import OllamaClient
+from backend.app.core.config import settings
 
 
 class ChatRequest(BaseModel):
@@ -17,8 +19,16 @@ router = APIRouter()
 
 @router.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest) -> ChatResponse:
+
+    client = OllamaClient(
+        base_url=settings.ollama_base_url,
+        model=settings.ollama_model,
+    )
+
+    model_response = client.generate(request.message)
+
     return ChatResponse(
-        message=f"This is a mock response for: {request.message}",
+        message=model_response,
         sources=[],
         confidence=0.0,
     )

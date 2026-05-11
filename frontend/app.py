@@ -44,4 +44,4 @@ if st.button("Send"):
                 for source in data["sources"]:
                     st.write(f"- {source}")
             else:
-                st.write("No sources yet. This is a mock response.")
+                st.write("No sources yet.")
