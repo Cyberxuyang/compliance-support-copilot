@@ -31,3 +31,6 @@ jobs:
 
       - name: Run tests
         run: uv run pytest
+
+      - name: Build Docker images
+        run: docker compose build

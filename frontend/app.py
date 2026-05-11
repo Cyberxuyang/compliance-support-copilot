@@ -34,7 +34,7 @@ if st.button("Send"):
             data = response.json()
 
             st.subheader("Answer")
-            st.write(data["answer"])
+            st.write(data["message"])
 
             st.subheader("Confidence")
             st.write(data["confidence"])
@@ -45,4 +45,3 @@ if st.button("Send"):
                     st.write(f"- {source}")
             else:
                 st.write("No sources yet. This is a mock response.")
-
