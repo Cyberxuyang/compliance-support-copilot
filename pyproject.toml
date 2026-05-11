@@ -7,7 +7,9 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.136.1",
     "pydantic-settings>=2.14.1",
+    "requests>=2.33.1",
     "ruff>=0.15.12",
+    "streamlit>=1.57.0",
     "uvicorn>=0.46.0",
 ]
 
