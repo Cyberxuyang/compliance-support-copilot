@@ -21,24 +21,28 @@ if st.button("Send"):
     if not message.strip():
         st.warning("Please enter a question.")
     else:
-        response = requests.post(
-            f"{BACKEND_URL}/chat",
-            json={"message": message},
-            timeout=10,
-        )
-        response.raise_for_status()
-
-        data = response.json()
-
-        st.subheader("Answer")
-        st.write(data["message"])
-
-        st.subheader("Confidence")
-        st.write(data["confidence"])
-
-        st.subheader("Sources")
-        if data["sources"]:
-            for source in data["sources"]:
-                st.write(f"- {source}")
+        try:
+            response = requests.post(
+                f"{BACKEND_URL}/chat",
+                json={"message": message},
+                timeout=10,
+            )
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            st.error(f"Failed to contact backend: {exc}")
         else:
-            st.write("No sources yet. This is a mock response.")
+            data = response.json()
+
+            st.subheader("Answer")
+            st.write(data["answer"])
+
+            st.subheader("Confidence")
+            st.write(data["confidence"])
+
+            st.subheader("Sources")
+            if data["sources"]:
+                for source in data["sources"]:
+                    st.write(f"- {source}")
+            else:
+                st.write("No sources yet. This is a mock response.")
+
